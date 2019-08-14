@@ -1,0 +1,67 @@
+﻿@model  TbcExamFinalTest.Models.Paging.PaginatedList<DataContract.Models.PhysicalPersonConnection>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                PhysicalPerson
+            </th>
+            <th>
+                ConnectedPhysicalPerson
+            </th>
+            <th>
+                PhysicalPersonConnectionType
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhysicalPerson.Name)
+                    @Html.DisplayFor(modelItem => item.PhysicalPerson.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConnectedPhysicalPerson.Name)
+                    @Html.DisplayFor(modelItem => item.ConnectedPhysicalPerson.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhysicalPersonConnectionType.Name)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

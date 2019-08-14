@@ -1,0 +1,45 @@
+﻿@model ProcessConnectionViewModel
+
+@{
+    ViewData["Title"] = "ProcessConnections";
+}
+
+<h1>ProcessConnections</h1>
+
+<p>
+    <a asp-controller="PhysicalPersonConnections" asp-action="Create" asp-route-id="@Model.PhysicalPerson.Id">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                PhysicalPerson
+            </th>
+            <th>
+                ConnectedPhysicalPerson
+            </th>
+            <th>
+                PhysicalPersonConnectionType
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Connections) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalPerson.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConnectedPhysicalPerson.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhysicalPersonConnectionType.Name)
+            </td>
+            <td>
+                <a asp-controller="PhysicalPersonConnections" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

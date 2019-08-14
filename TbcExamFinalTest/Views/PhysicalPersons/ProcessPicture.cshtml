@@ -1,0 +1,35 @@
+﻿@model DataContract.Models.PhysicalPersonPictureViewModel
+
+@{
+    ViewData["Title"] = "ShowPicture";
+}
+
+<h1>ShowPicture</h1>
+
+<img width="400" height="200" src="~/images/@Url.Content(Model.ImagePath)" alt="Image" />
+
+
+<div>
+    <h4>PhysicalPerson</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+    </dl>
+</div>
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="file">Filename:</label>
+    <input type="file" name="file" id="file" />
+    <input type="submit" value="AddOrChangePicture" class="btn btn-primary" />
+</form>
+<div> <a asp-action="Index">Back to List</a> </div>

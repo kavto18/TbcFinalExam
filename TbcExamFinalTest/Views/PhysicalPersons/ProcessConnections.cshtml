@@ -28,9 +28,11 @@
 @foreach (var item in Model.Connections) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.PhysicalPerson.Name)
                 @Html.DisplayFor(modelItem => item.PhysicalPerson.LastName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ConnectedPhysicalPerson.Name)
                 @Html.DisplayFor(modelItem => item.ConnectedPhysicalPerson.LastName)
             </td>
             <td>
